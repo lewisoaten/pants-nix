@@ -29,13 +29,13 @@ nix-channel --update
 Then build the package:
 
 ```bash
-nix-build '<pants-nix>' -A '"release_2.20.0"'
+nix-build '<pants-nix>' -A '"release_2.26.2"'
 ```
 
 Or install via `nix-env`:
 
 ```bash
-nix-env -iA 'pants-nix."release_2.20.0"'
+nix-env -iA 'pants-nix."release_2.26.2"'
 ```
 
 ## Docker container
@@ -43,7 +43,7 @@ nix-env -iA 'pants-nix."release_2.20.0"'
 Spin up a container:
 
 ```bash
-docker run -it -e NIX_PATH=nixpkgs=channel:nixos-23.11 nixpkgs/nix:nixos-23.11 bash
+docker run -it -e NIX_PATH=nixpkgs=channel:nixos-25.05 nixpkgs/nix:nixos-25.05 bash
 ```
 
 Then inside the container:
@@ -51,7 +51,7 @@ Then inside the container:
 ```bash
 nix-channel --add https://github.com/grihabor/pants-nix/archive/main.tar.gz pants-nix
 nix-channel --update
-nix-env -iA 'pants-nix."release_2.20.0"'
+nix-env -iA 'pants-nix."release_2.26.2"'
 export PATH="$PATH:$(nix-env --query --out-path --no-name pants)/bin"
 touch pants.toml
 pants --version
@@ -62,7 +62,7 @@ pants --version
 Adhoc shell:
 
 ```bash
-nix shell 'github:grihabor/pants-nix#"release_2.20.0"' --command pants --version
+nix shell 'github:grihabor/pants-nix#"release_2.26.2"' --command pants --version
 ```
 
 Using in a flake:
@@ -87,7 +87,7 @@ Using in a flake:
   in {
     devShells."x86_64-linux".default = pkgs.mkShell {
       packages = [
-        pants-nix.packages."x86_64-linux"."release_2.21.0"
+        pants-nix.packages."x86_64-linux"."release_2.26.2"
       ];
     };
   };
@@ -102,9 +102,9 @@ nix search github:grihabor/pants-nix ^
 ## Development
 
 ```bash
-nix-build -A '"release_2.20.0"'
+nix-build -A '"release_2.26.2"'
 
-nix build '.#"release_2.20.0"'
+nix build '.#"release_2.26.2"'
 
-nix shell '.#"release_2.20.0"' --command pants --version
+nix shell '.#"release_2.26.2"' --command pants --version
 ```

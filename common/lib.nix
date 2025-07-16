@@ -74,13 +74,14 @@ let
             setuptools
           ];
 
-          # curl -L -O https://raw.githubusercontent.com/pantsbuild/pants/release_2.20.0/3rdparty/python/requirements.txt
+          # curl -L -O https://raw.githubusercontent.com/pantsbuild/pants/release_2.26.2/3rdparty/python/requirements.txt
           propagatedBuildInputs = [
             ansicolors
             chevron
             fasteners
             freezegun
             ijson
+            libcst
             node-semver
             packaging
             pex
@@ -100,7 +101,7 @@ let
             typing-extensions
           ];
 
-          # https://github.com/pantsbuild/pants/blob/release_2.20.0/src/python/pants/BUILD#L27-L39
+          # https://github.com/pantsbuild/pants/blob/release_2.26.2/src/python/pants/BUILD#L27-L39
           configurePhase = ''
             cat > setup.py << EOF
             from setuptools import setup, Extension
@@ -155,10 +156,10 @@ let
 
           preBuild = ''
 
-            # https://github.com/pantsbuild/pants/blob/release_2.20.0/src/python/pants/engine/internals/BUILD#L28
+            # https://github.com/pantsbuild/pants/blob/release_2.26.2/src/python/pants/engine/internals/BUILD#L28
             cp ${pants-engine}/lib/native_engine.so src/python/pants/engine/internals/
 
-            # https://github.com/pantsbuild/pants/blob/release_2.20.0/build-support/bin/rust/bootstrap_code.sh#L34
+            # https://github.com/pantsbuild/pants/blob/release_2.26.2/build-support/bin/rust/bootstrap_code.sh#L34
             cp ${pants-engine}/bin/native_client src/python/pants/bin/
           '';
 

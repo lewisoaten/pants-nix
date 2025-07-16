@@ -78,4 +78,5 @@
   "release_2.23.0a0" = pkgs.callPackage ./release_2.23.0a0 {};
   "release_2.23.0a1" = pkgs.callPackage ./release_2.23.0a1 {};
   "release_2.24.0.dev0" = pkgs.callPackage ./release_2.24.0.dev0 {};
+  "release_2.26.2" = pkgs.callPackage ./release_2.26.2 {};
 }

@@ -151,13 +151,13 @@ async def _generate_tag(repo: Repo, version: str, force: bool = False) -> None:
     patches_filenames = [
         *[
             "patch-process-manager.txt",
-            "patch-jar-tool.txt",
             "patch-coursier-fetch.txt",
             "patch-process.txt",
             "patch-jdk-sh.txt",
         ],
         *(["patch-process-extra-env-2.22.txt"] if Version(2, 22, 0) <= version_ < Version(2, 23, 0) else []),
         *(["patch-process-extra-env.txt"] if Version(2, 23, 0) <= version_ else []),
+        *(["patch-jar-tool.txt"] if version_ < Version(2, 26, 0) else []),
     ]
     result = string.Template(template_string).safe_substitute(
         version=version,
